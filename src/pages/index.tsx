@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import usePagination from "@/utils/hook/usePagination";
 import { Table, Pagination } from "@/components";
 import { CharactersArrayProps } from "@/types/types";
-
-const API_URL = "https://rickandmortyapi.com/api/character";
+import useCharacter from "@/utils/hook/useCharacter";
+import { fetchCharacters } from "../utils/api";
 
 interface HomeProps {
   totalPages: number;
@@ -13,11 +13,7 @@ interface HomeProps {
 
 export const getServerSideProps = async () => {
   try {
-    const res = await fetch(API_URL);
-    if (!res.ok) {
-      throw new Error("Failed to fetch data");
-    }
-    const data = await res.json();
+    const data = await fetchCharacters();
 
     return {
       props: {
@@ -33,28 +29,17 @@ export const getServerSideProps = async () => {
   }
 };
 
-export default function Home({ totalPages, characters }: HomeProps) {
+export default function Home({ totalPages }: HomeProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [data, setData] = useState(characters.data);
 
   const paginationRange = usePagination({
     currentPage,
     totalPages,
   });
 
-  const fetchData = async (page: number) => {
-    try {
-      const res = await fetch(`${API_URL}/?page=${page}`);
-      const jsonRes = await res.json();
-      setData(jsonRes.results);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  const { characters, isLoading } = useCharacter(currentPage);
 
-  useEffect(() => {
-    fetchData(currentPage);
-  }, [currentPage]);
+  if (isLoading) return <h1>Loading</h1>;
 
   const handleClickPage = (page: number) => {
     setCurrentPage(page);
@@ -88,7 +73,7 @@ export default function Home({ totalPages, characters }: HomeProps) {
 
       <main>
         <h1 className="center halloween">Rick And Morty Characters</h1>
-        <Table data={data} />
+        <Table data={characters} />
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}

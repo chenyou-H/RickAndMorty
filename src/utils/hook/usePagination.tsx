@@ -7,8 +7,8 @@ interface usePaginationProps {
 }
 
 export default function usePagination({
-  totalPages,
   currentPage,
+  totalPages,
 }: usePaginationProps) {
   const paginationRange = useMemo(() => {
     // Pages count is determined as 2 siblingCount + firstPage + lastPage + currentPage + 2*DOTS

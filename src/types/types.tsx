@@ -1,5 +1,15 @@
 // types.ts
 
+interface Origin {
+  name: string;
+  url: string;
+}
+
+interface Location {
+  name: string;
+  url: string;
+}
+
 export interface Character {
   id: number;
   name: string;
@@ -7,14 +17,8 @@ export interface Character {
   species: string;
   type: string;
   gender: string;
-  origin: {
-    name: string;
-    url: string;
-  };
-  location: {
-    name: string;
-    url: string;
-  };
+  origin: Origin;
+  location: Location;
   image: string;
   episode: string[];
   url: string;
@@ -28,3 +32,15 @@ export interface CharacterProps {
 export interface CharactersArrayProps {
   data: Character[];
 }
+
+interface ApiResponse {
+  info: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
+  results: Character[];
+}
+
+export default ApiResponse;
