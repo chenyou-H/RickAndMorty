@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import usePagination from "@/lib/hook/usePagination";
+import usePagination from "@/utils/hook/usePagination";
 import { Table, Pagination } from "@/components";
 import { CharactersArrayProps } from "@/types/types";
 
@@ -87,7 +87,7 @@ export default function Home({ totalPages, characters }: HomeProps) {
       </Head>
 
       <main>
-        <h1 className="center">Rick And Morty Characters</h1>
+        <h1 className="center halloween">Rick And Morty Characters</h1>
         <Table data={data} />
         <Pagination
           currentPage={currentPage}

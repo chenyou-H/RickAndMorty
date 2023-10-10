@@ -33,6 +33,7 @@ export default function Pagination({
           return (
             <PaginationButton
               key={index}
+              selected={currentPage === page}
               handleClick={() => {
                 handleClickPage(page);
               }}
