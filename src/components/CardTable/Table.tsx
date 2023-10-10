@@ -9,7 +9,7 @@ export default function Table({ data }: CharactersArrayProps) {
       {data?.map((character) => {
         return (
           <div className="card center" key={character.id}>
-            <Card character={character} />;
+            <Card character={character} />
           </div>
         );
       })}
