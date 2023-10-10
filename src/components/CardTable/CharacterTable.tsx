@@ -5,16 +5,14 @@ import { CharactersArrayProps } from "@/types";
 
 export default function CharacterTable({ characters }: CharactersArrayProps) {
   return (
-    <section className="center container">
-      <div className="tableContainer">
-        {characters?.map((character) => {
-          return (
-            <div className="card center" key={character.id}>
-              <Card character={character} />
-            </div>
-          );
-        })}
-      </div>
+    <section className="tableContainer">
+      {characters?.map((character) => {
+        return (
+          <div className="card center tableContainer__item" key={character.id}>
+            <Card character={character} />
+          </div>
+        );
+      })}
     </section>
   );
 }

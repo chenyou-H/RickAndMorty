@@ -33,14 +33,21 @@ $font-size-halloween: 2rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.paper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   max-width: 1500px;
+  padding: 0 10rem;
 }
 
 .tableContainer {
   max-width: 1500px;
   display: flex;
   flex-wrap: wrap;
-  // justify-content: center;
+  flex-grow: 100%;
 }
 
 // Styles for centered elements
