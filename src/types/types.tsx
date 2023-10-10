@@ -25,22 +25,14 @@ export interface Character {
   created: string;
 }
 
-export interface CharacterProps {
-  character: Character;
-}
-
 export interface CharactersArrayProps {
   characters: Character[];
 }
 
-interface ApiResponse {
-  info: {
-    count: number;
-    pages: number;
-    next: string | null;
-    prev: string | null;
-  };
-  results: Character[];
+interface CharacterProps {
+  totalPages: string;
+  currentPage: string;
+  characters: CharactersArrayProps;
 }
 
-export default ApiResponse;
+export default CharacterProps;

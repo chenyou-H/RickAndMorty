@@ -103,6 +103,8 @@ $font-size-halloween: 3rem;
     &:disabled {
       cursor: not-allowed;
       box-shadow: none;
+      color: gray;
+      border: solid 0.15rem gray;
     }
 
     &--selected {
