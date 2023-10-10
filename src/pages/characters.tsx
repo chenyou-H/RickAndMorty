@@ -45,6 +45,8 @@ export default function Characters({
     totalPages,
   });
 
+  const targetUrl = "/characters/?page=";
+
   return (
     <>
       <Head>
@@ -60,6 +62,7 @@ export default function Characters({
         <CharacterTable characters={characters} />
 
         <Pagination
+          targetUrl={targetUrl}
           currentPage={currentPage}
           totalPages={totalPages}
           paginationRange={paginationRange}

@@ -100,6 +100,7 @@ $font-size-halloween: 2rem;
   &__dots {
     font-size: 2rem;
     margin: 16px;
+    color: var(--halloween-color);
   }
 
   &__btn {
@@ -127,8 +128,8 @@ $font-size-halloween: 2rem;
     }
 
     &--selected {
-      color: white;
-      background-color: var(--button-background-hover);
+      color: black;
+      background-color: var(--halloween-color);
       box-shadow: none;
     }
   }

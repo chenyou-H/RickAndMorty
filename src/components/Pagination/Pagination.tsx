@@ -7,20 +7,20 @@ interface PaginationProps {
   currentPage: number;
   totalPages: number;
   paginationRange: NumberOrEllipsisArray;
+  targetUrl: string;
 }
 
 export default function Pagination({
   currentPage,
   totalPages,
   paginationRange,
+  targetUrl,
 }: PaginationProps) {
-  const targetUrl = "/characters/?page=";
-
   return (
     <div className="center">
       <div className="pagination">
         <PaginationButton
-          url={targetUrl + String(currentPage - 1)}
+          url={`${targetUrl}${currentPage - 1}`}
           isDisabled={currentPage === 1}
         >
           &#60;
@@ -46,7 +46,7 @@ export default function Pagination({
         })}
         <PaginationButton
           isDisabled={currentPage === totalPages}
-          url={targetUrl + String(currentPage + 1)}
+          url={`${targetUrl}${currentPage + 1}`}
         >
           &#62;
         </PaginationButton>
