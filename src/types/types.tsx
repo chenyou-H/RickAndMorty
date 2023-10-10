@@ -30,7 +30,7 @@ export interface CharacterProps {
 }
 
 export interface CharactersArrayProps {
-  data: Character[];
+  characters: Character[];
 }
 
 interface ApiResponse {

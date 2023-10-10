@@ -4,7 +4,13 @@ Rick And Morty Characters Online Assessment
 
 ## Getting Started
 
-First, run the development server:
+First, install packages
+
+```bash
+npm install
+```
+
+Secondly, run the development server:
 
 ```bash
 npm run dev

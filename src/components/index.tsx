@@ -1,2 +1,2 @@
 export { Pagination } from "./Pagination";
-export { Table } from "./CardTable";
+export { CharacterTable } from "./CardTable";
