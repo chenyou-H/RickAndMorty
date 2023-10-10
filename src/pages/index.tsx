@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import usePagination from "@/utils/hook/usePagination";
 import { Table, Pagination } from "@/components";
 import { CharactersArrayProps } from "@/types/types";
