@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-import { CharacterProps } from "@/types/types";
+import { CharacterProps } from "@/types";
 
 export default function Card({ character }: CharacterProps) {
   return (

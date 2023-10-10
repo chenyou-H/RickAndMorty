@@ -1,20 +1,30 @@
 import React from "react";
 import Head from "next/head";
+import { GetServerSideProps } from "next";
 
 import { fetchCharactersByPage } from "../utils/services/CharactersAPI";
 import { CharacterTable, Pagination } from "@/components";
 import usePagination from "@/utils/hook/usePagination";
-import CharacterProps from "@/types/types";
+import { Character } from "@/types";
 
-export const getServerSideProps = async (context) => {
+interface CharactersProps {
+  totalPages: number;
+  characters: Character[];
+  currentPage: number;
+}
+
+export const getServerSideProps: GetServerSideProps<CharactersProps> = async ({
+  query,
+}) => {
   try {
-    const currentPage = context.query.page;
+    const params = query.page as string;
+    const currentPage = Number(params);
     const data = await fetchCharactersByPage(currentPage);
     return {
       props: {
         totalPages: data?.info?.pages,
         characters: data?.results,
-        currentPage: Number(currentPage),
+        currentPage,
       },
     };
   } catch (error) {
@@ -29,7 +39,7 @@ export default function Characters({
   totalPages,
   characters,
   currentPage,
-}: CharacterProps) {
+}: CharactersProps) {
   const paginationRange = usePagination({
     currentPage,
     totalPages,
@@ -43,7 +53,9 @@ export default function Characters({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main>
-        <h1 className="center halloween">Rick And Morty Characters</h1>
+        <header className="center">
+          <h1 className="halloween">Rick And Morty Characters</h1>
+        </header>
         <CharacterTable characters={characters} />
         <Pagination
           currentPage={currentPage}

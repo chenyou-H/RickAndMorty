@@ -1,5 +1,3 @@
-// types.ts
-
 interface Origin {
   name: string;
   url: string;
@@ -28,11 +26,3 @@ export interface Character {
 export interface CharactersArrayProps {
   characters: Character[];
 }
-
-interface CharacterProps {
-  totalPages: number;
-  currentPage: number;
-  characters: CharactersArrayProps;
-}
-
-export default CharacterProps;
