@@ -4,7 +4,7 @@ import usePagination from "@/utils/hook/usePagination";
 import { Table, Pagination } from "@/components";
 import { CharactersArrayProps } from "@/types/types";
 import useCharacter from "@/utils/hook/useCharacter";
-import { fetchCharacters } from "../utils/api";
+import { fetchCharacters } from "../utils/services/CharactersAPI";
 
 interface HomeProps {
   totalPages: number;

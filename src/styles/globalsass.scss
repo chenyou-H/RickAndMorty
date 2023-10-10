@@ -1,22 +1,35 @@
 @forward "./reset.scss";
+
+// Import Google Fonts
 @import url("https://fonts.googleapis.com/css?family=Nosifer&display=swap");
 
+// Define global variables
 :root {
   --halloween-color: #eb6123;
+  --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  --box-shadow-hover: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  --button-background-hover: rgba(0, 0, 0, 0.4);
 }
 
+// Define reusable variables
+$font-nosifer: Nosifer, cursive;
+$font-size-halloween: 3rem;
+
+// Styles for Halloween-themed element
 .halloween {
-  font-family: Nosifer !important;
-  font-size: 3rem;
-  margin: 3rem 0 3rem 0;
+  font-family: $font-nosifer;
+  font-size: $font-size-halloween;
+  margin: 3rem 0;
 }
 
+// Styles for container
 .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
+// Styles for centered elements
 .center {
   display: flex;
   flex-direction: column;
@@ -33,13 +46,15 @@
   margin: 0 0 72px 0;
 }
 
+// Styles for card
 .card {
   border-radius: 12px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: var(--box-shadow);
   transition: 0.3s;
   margin: 32px;
+
   &:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: var(--box-shadow-hover);
   }
 
   &__image {
@@ -53,13 +68,13 @@
   }
 }
 
+// Styles for pagination
 .pagination {
   padding: 32px 64px;
 
   &__dots {
     font-size: 2rem;
     margin: 16px;
-    // color: #eb6123;
   }
 
   &__btn {
@@ -71,8 +86,9 @@
     border-radius: 10px;
     font-size: 1.5rem;
     border: solid 0.15rem var(--halloween-color);
+
     &:hover {
-      background-color: rgba(0, 0, 0, 0.4);
+      background-color: var(--button-background-hover);
       color: #ffffff;
     }
 
@@ -83,7 +99,7 @@
 
     &--selected {
       color: white;
-      background-color: rgba(0, 0, 0, 0.4);
+      background-color: var(--button-background-hover);
       box-shadow: none;
     }
   }
