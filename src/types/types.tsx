@@ -30,8 +30,8 @@ export interface CharactersArrayProps {
 }
 
 interface CharacterProps {
-  totalPages: string;
-  currentPage: string;
+  totalPages: number;
+  currentPage: number;
   characters: CharactersArrayProps;
 }
 

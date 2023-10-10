@@ -4,6 +4,8 @@ Rick And Morty Characters Online Assessment
 
 ## Getting Started
 
+node version v16.15.0
+
 First, install packages
 
 ```bash

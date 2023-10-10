@@ -1,7 +1,7 @@
 import React from "react";
 
 import Card from "./Card";
-import { CharactersArrayProps } from "@/types/types";
+import { CharactersArrayProps, Character } from "@/types/types";
 
 export default function CharacterTable({ characters }: CharactersArrayProps) {
   return (
