@@ -35,6 +35,8 @@ export const getServerSideProps: GetServerSideProps<
   }
 };
 
+const targetUrl = "/characters/?page=";
+
 export default function Characters({
   totalPages,
   characters,
@@ -44,8 +46,6 @@ export default function Characters({
     currentPage,
     totalPages,
   });
-
-  const targetUrl = "/characters/?page=";
 
   return (
     <>

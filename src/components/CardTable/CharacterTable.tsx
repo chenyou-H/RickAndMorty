@@ -7,11 +7,7 @@ export default function CharacterTable({ characters }: CharactersArrayProps) {
   return (
     <section className="tableContainer">
       {characters?.map((character) => {
-        return (
-          <div className="card center tableContainer__item" key={character.id}>
-            <Card character={character} />
-          </div>
-        );
+        return <Card key={character.id} character={character} />;
       })}
     </section>
   );
