@@ -1,5 +1,6 @@
 import React from "react";
 import PaginationButton from "./PaginationButton";
+import Dots from "./Dots";
 
 interface NumberOrEllipsisArray extends Array<number | "..."> {}
 
@@ -37,11 +38,7 @@ export default function Pagination({
               </PaginationButton>
             );
           } else {
-            return (
-              <span key={index} className="pagination__dots">
-                ...
-              </span>
-            );
+            return <Dots key={index} />;
           }
         })}
         <PaginationButton

@@ -9,7 +9,7 @@ interface CardProps {
 
 export default function Card({ character }: CardProps) {
   return (
-    <>
+    <div className="card center">
       <Image
         className="card__image"
         src={character.image}
@@ -18,6 +18,6 @@ export default function Card({ character }: CardProps) {
         height={300}
       />
       <h2 className="card__name">{character.name}</h2>
-    </>
+    </div>
   );
 }
