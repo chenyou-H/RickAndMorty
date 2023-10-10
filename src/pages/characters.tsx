@@ -5,17 +5,17 @@ import { GetServerSideProps } from "next";
 import { fetchCharactersByPage } from "../utils/services/CharactersAPI";
 import { CharacterTable, Pagination } from "@/components";
 import usePagination from "@/utils/hook/usePagination";
-import { Character } from "@/types";
+import { CharacterProps } from "@/types";
 
-interface CharactersProps {
+interface CharactersPageProps {
   totalPages: number;
-  characters: Character[];
+  characters: CharacterProps[];
   currentPage: number;
 }
 
-export const getServerSideProps: GetServerSideProps<CharactersProps> = async ({
-  query,
-}) => {
+export const getServerSideProps: GetServerSideProps<
+  CharactersPageProps
+> = async ({ query }) => {
   try {
     const params = query.page as string;
     const currentPage = Number(params);
@@ -39,7 +39,7 @@ export default function Characters({
   totalPages,
   characters,
   currentPage,
-}: CharactersProps) {
+}: CharactersPageProps) {
   const paginationRange = usePagination({
     currentPage,
     totalPages,

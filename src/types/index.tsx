@@ -8,7 +8,7 @@ interface Location {
   url: string;
 }
 
-export interface Character {
+export interface CharacterProps {
   id: number;
   name: string;
   status: string;
@@ -24,5 +24,5 @@ export interface Character {
 }
 
 export interface CharactersArrayProps {
-  characters: Character[];
+  characters: CharacterProps[];
 }

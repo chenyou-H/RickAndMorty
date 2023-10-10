@@ -3,7 +3,11 @@ import Image from "next/image";
 
 import { CharacterProps } from "@/types";
 
-export default function Card({ character }: CharacterProps) {
+interface CardProps {
+  character: CharacterProps;
+}
+
+export default function Card({ character }: CardProps) {
   return (
     <>
       <Image
