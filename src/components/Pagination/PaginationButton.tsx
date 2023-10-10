@@ -48,8 +48,8 @@ export default function PaginationButton({
     );
   }
   return (
-    <Link className={styles} href={url}>
-      {children}
+    <Link href={url}>
+      <button className={styles}>{children}</button>
     </Link>
   );
 }

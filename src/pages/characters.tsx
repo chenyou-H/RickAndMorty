@@ -1,5 +1,4 @@
 import React from "react";
-
 import Head from "next/head";
 
 import { fetchCharactersByPage } from "../utils/services/CharactersAPI";
@@ -7,9 +6,6 @@ import { CharacterTable, Pagination } from "@/components";
 import usePagination from "@/utils/hook/usePagination";
 
 export const getServerSideProps = async (context) => {
-  // console.log("query: ", context.query);
-  // fetchCharactersByPage(context.query.page)
-  // return { props: { qury: context.query } };
   try {
     const currentPage = context.query.page;
     const data = await fetchCharactersByPage(currentPage);

@@ -99,7 +99,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <main>
+      <main className="center halloweenContainer">
         <Link className="center halloween" href="/characters/?page=1">
           View Rick And Morty Characters
         </Link>
