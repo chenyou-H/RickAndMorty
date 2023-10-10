@@ -56,9 +56,15 @@
 .pagination {
   padding: 32px 64px;
 
+  &__dots {
+    font-size: 2rem;
+    margin: 16px;
+    // color: #eb6123;
+  }
+
   &__btn {
-    width: 3rem;
-    height: 3rem;
+    width: 60px;
+    height: 60px;
     border: none;
     background-color: transparent;
     margin: 16px;
