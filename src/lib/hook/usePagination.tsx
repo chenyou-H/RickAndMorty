@@ -1,10 +1,18 @@
 import React, { useMemo } from "react";
 var _ = require("lodash");
 
-export default function usePagination({ totalPages, currentPage }) {
+interface usePaginationProps {
+  totalPages: number;
+  currentPage: number;
+}
+
+export default function usePagination({
+  totalPages,
+  currentPage,
+}: usePaginationProps) {
   const paginationRange = useMemo(() => {
-    // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
-    const totalVisiblePageNumbers = 6;
+    // Pages count is determined as 2 siblingCount + firstPage + lastPage + currentPage + 2*DOTS
+    const totalVisiblePageNumbers = 7;
 
     if (totalPages < totalVisiblePageNumbers) {
       return _.range(1, totalPages);
@@ -30,7 +38,7 @@ export default function usePagination({ totalPages, currentPage }) {
     */
     if (!shouldShowLeftDots && shouldShowRightDots) {
       let leftItemCount = 3 + 2 * 1;
-      let leftRange = _.range(1, leftItemCount);
+      let leftRange = _.range(1, leftItemCount + 1);
 
       return [...leftRange, "...", totalPages];
     }
@@ -40,10 +48,7 @@ export default function usePagination({ totalPages, currentPage }) {
     */
     if (shouldShowLeftDots && !shouldShowRightDots) {
       let rightItemCount = 3 + 2 * 1;
-      let rightRange = _.range(
-        totalVisiblePageNumbers - rightItemCount + 1,
-        totalPages
-      );
+      let rightRange = _.range(totalPages - rightItemCount + 1, totalPages + 1);
       return [firstPageIndex, "...", ...rightRange];
     }
 
@@ -51,7 +56,7 @@ export default function usePagination({ totalPages, currentPage }) {
     	Case 4: Both left and right dots to be shown
     */
     if (shouldShowLeftDots && shouldShowRightDots) {
-      let middleRange = _.range(leftSiblingIndex, rightSiblingIndex);
+      let middleRange = _.range(leftSiblingIndex, rightSiblingIndex + 1);
       return [firstPageIndex, "...", ...middleRange, "...", lastPageIndex];
     }
   }, [currentPage, totalPages]);

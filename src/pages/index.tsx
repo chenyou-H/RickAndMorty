@@ -1,31 +1,54 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
 
-// const inter = Inter({ subsets: ["latin"] });
-
-import type { InferGetStaticPropsType, GetStaticProps } from "next";
-import { useState } from "react";
+import type { InferGetStaticPropsType } from "next";
+import { useEffect, useState } from "react";
 import usePagination from "@/lib/hook/usePagination";
-
-// export const getStaticProps = (async (context) => {
-//   const res = await fetch("https://rickandmortyapi.com/api/character");
-//   const characters = await res.json();
-//   return { props: { characters } };
-// }) satisfies GetStaticProps<{
-//   characters;
-// }>;
 
 export default function Home({
   characters,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  // console.log("my characters are: ", characters);
-
-  const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 42;
 
-  const paginationRange = usePagination({ currentPage, totalPages });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch(`https://rickandmortyapi.com/api/character/?page=${currentPage}`)
+      .then((res) => res.json())
+      .then((result) => {
+        console.log("result: ", result);
+        setData(result);
+      });
+  }, [currentPage]);
+
+  const paginationRange = usePagination({
+    currentPage,
+    totalPages: data?.info?.pages,
+  });
+
+  const handleClickPage = (page) => {
+    setCurrentPage(page);
+  };
+
+  const handleClickNext = () => {
+    setCurrentPage((prev) => {
+      if (prev < totalPages) {
+        return prev + 1;
+      }
+    });
+  };
+
+  const handleClickPrev = () => {
+    setCurrentPage((prev) => {
+      if (prev > 1) {
+        return prev - 1;
+      }
+    });
+  };
+
+  console.log("current page is: ", currentPage);
+  console.log("current page type is: ", typeof currentPage);
 
   return (
     <>
@@ -36,21 +59,43 @@ export default function Home({
       </Head>
 
       <main>
-        <h1>Rick And Morty Characters</h1>
-        {characters?.results.map((character) => {
-          return (
-            <div key={character.id}>
-              <Image
-                src={character.image}
-                alt={character.name}
-                width={300}
-                height={300}
-              />
-              <h5>{character.name}</h5>
-            </div>
-          );
-        })}
-        <div></div>
+        <h1 className="center">Rick And Morty Characters</h1>
+        <section>
+          {data?.results?.map((character) => {
+            return (
+              <div key={character.id}>
+                <Image
+                  src={character.image}
+                  alt={character.name}
+                  width={300}
+                  height={300}
+                />
+                <h5>{character.name}</h5>
+              </div>
+            );
+          })}
+        </section>
+        <div>
+          <button onClick={handleClickPrev}>left</button>
+          {paginationRange?.map((page, index) => {
+            if (typeof page !== "string") {
+              return (
+                <button
+                  className="page__button"
+                  onClick={() => {
+                    handleClickPage(page);
+                  }}
+                  key={index}
+                >
+                  {page}
+                </button>
+              );
+            } else {
+              return <span key={index}>...</span>;
+            }
+          })}
+          <button onClick={handleClickNext}>right</button>
+        </div>
       </main>
 
       {/* <main className={`${styles.main} ${inter.className}`}>
