@@ -54,7 +54,7 @@ export default function Characters({
         <meta name="description" content="Rick and Morty Images List" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <main className="paper">
+      <main className="centerCol">
         <header className="center">
           <h1 className="halloween centerText">Rick And Morty Characters</h1>
         </header>

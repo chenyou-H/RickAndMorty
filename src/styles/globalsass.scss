@@ -3,11 +3,20 @@
 // Import Google Fonts
 @import url("https://fonts.googleapis.com/css?family=Nosifer&display=swap");
 
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 // Define global variables
 :root {
   --halloween-color: #eb6123;
   --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  --box-shadow-hover: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  --box-shadow-hover: 0 8px 16px 0 rgba(19, 1, 1, 0.923);
   --button-background-hover: rgba(0, 0, 0, 0.4);
 }
 
@@ -40,18 +49,44 @@ $font-size-halloween: 2rem;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 1500px;
-  padding: 0 10rem;
+  // padding: 0 5rem;
 }
 
-.tableContainer {
-  max-width: 1500px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-grow: 100%;
+//styles for table
+.table {
+  &__container {
+    max-width: 1500px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 100%;
+    width: 100%;
+    margin: 0 0 4rem 0;
+    padding: 0 10rem;
+
+    @media only screen and (max-width: 810px) {
+      padding: 0;
+    }
+  }
+}
+
+//style for grid container
+.grid {
+  &__container {
+    display: grid;
+    width: 100%;
+    gap: 4rem;
+    justify-items: center;
+    grid-template-columns: repeat(3, 1fr);
+
+    //styles for media
+    @media only screen and (max-width: 810px) {
+      gap: 0.5rem;
+    }
+  }
 }
 
 // Styles for centered elements
-.center {
+.centerCol {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,12 +94,12 @@ $font-size-halloween: 2rem;
   position: relative;
 }
 
-.centerRow {
+.center {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  margin: 0 0 72px 0;
+  // margin: 0 0 72px 0;
 }
 
 .centerText {
@@ -76,13 +111,22 @@ $font-size-halloween: 2rem;
   border-radius: 12px;
   box-shadow: var(--box-shadow);
   transition: 0.3s;
-  margin: 32px;
+  width: 100%;
+  border: 2px solid red;
 
   &:hover {
     box-shadow: var(--box-shadow-hover);
+    // box-shadow: 0 8px 16px 0 red;
+  }
+
+  &__imageContainer {
+    width: 100%;
   }
 
   &__image {
+    // height: 100%;
+    width: 100%;
+    height: auto;
     border: solid 0.5rem var(--halloween-color);
   }
 
