@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useMemo } from "react";
 import PaginationButton from "./PaginationButton";
 import Dots from "./Dots";
-import usePagination from "@/utils/hook/usePagination";
+import getPaginationRange from "@/utils/getPaginationRange";
 
 interface PaginationProps {
   currentPage: number;
@@ -14,10 +14,14 @@ export default function Pagination({
   totalPages,
   handleClickButton,
 }: PaginationProps) {
-  const paginationRange = usePagination({
-    currentPage,
-    totalPages,
-  });
+  const paginationRange = useMemo(
+    () =>
+      getPaginationRange({
+        currentPage,
+        totalPages,
+      }),
+    [currentPage, totalPages]
+  );
 
   const handleClickPrev = () => {
     if (currentPage > 1) {
