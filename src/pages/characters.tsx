@@ -4,7 +4,6 @@ import { GetServerSideProps } from "next";
 
 import { fetchCharactersByPage } from "../utils/services/CharactersAPI";
 import { CharacterTable, Pagination } from "@/components";
-import usePagination from "@/utils/getPaginationRange";
 import { CharacterProps } from "@/types";
 import { useRouter } from "next/router";
 
