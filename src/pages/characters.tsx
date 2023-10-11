@@ -6,6 +6,7 @@ import { fetchCharactersByPage } from "../utils/services/CharactersAPI";
 import { CharacterTable, Pagination } from "@/components";
 import usePagination from "@/utils/hook/usePagination";
 import { CharacterProps } from "@/types";
+import { useRouter } from "next/router";
 
 interface CharactersPageProps {
   totalPages: number;
@@ -35,8 +36,6 @@ export const getServerSideProps: GetServerSideProps<
   }
 };
 
-const targetUrl = "/characters/?page=";
-
 export default function Characters({
   totalPages,
   characters,
@@ -46,6 +45,12 @@ export default function Characters({
     currentPage,
     totalPages,
   });
+
+  const router = useRouter();
+
+  const handleClickPage = (newPage: number) => {
+    router.push(`/characters/?page=${newPage}`);
+  };
 
   return (
     <>
@@ -62,7 +67,7 @@ export default function Characters({
         <CharacterTable characters={characters} />
 
         <Pagination
-          targetUrl={targetUrl}
+          handleClickButton={handleClickPage}
           currentPage={currentPage}
           totalPages={totalPages}
           paginationRange={paginationRange}

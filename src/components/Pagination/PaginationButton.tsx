@@ -3,29 +3,27 @@ import Link from "next/link";
 
 interface PaginationButtonProps {
   children: React.ReactNode;
-  url: string;
   isDisabled?: boolean;
   selected?: boolean;
+  handleClickButton: () => void;
 }
 
 export default function PaginationButton({
   isDisabled = false,
   selected = false,
-  url,
+  handleClickButton,
   children,
 }: PaginationButtonProps) {
   const isSelected = selected ? "pagination__btn--selected" : "";
   const styles = `${isSelected} pagination__btn`;
-  if (isDisabled) {
-    return (
-      <button className={styles} disabled>
-        {children}
-      </button>
-    );
-  }
+
   return (
-    <Link href={url}>
-      <button className={styles}>{children}</button>
-    </Link>
+    <button
+      className={styles}
+      disabled={isDisabled}
+      onClick={handleClickButton}
+    >
+      {children}
+    </button>
   );
 }

@@ -8,20 +8,32 @@ interface PaginationProps {
   currentPage: number;
   totalPages: number;
   paginationRange: NumberOrEllipsisArray;
-  targetUrl: string;
+  handleClickButton: (page: number) => void;
 }
 
 export default function Pagination({
   currentPage,
   totalPages,
   paginationRange,
-  targetUrl,
+  handleClickButton,
 }: PaginationProps) {
+  const handleClickPrev = () => {
+    if (currentPage > 1) {
+      handleClickButton(currentPage - 1);
+    }
+  };
+
+  const handleClickNext = () => {
+    if (currentPage < totalPages) {
+      handleClickButton(currentPage + 1);
+    }
+  };
+
   return (
     <div className="center">
       <div className="pagination">
         <PaginationButton
-          url={`${targetUrl}${currentPage - 1}`}
+          handleClickButton={handleClickPrev}
           isDisabled={currentPage === 1}
         >
           &#60;
@@ -32,7 +44,7 @@ export default function Pagination({
               <PaginationButton
                 key={index}
                 selected={currentPage === page}
-                url={targetUrl + page}
+                handleClickButton={() => handleClickButton(page)}
               >
                 {page}
               </PaginationButton>
@@ -42,8 +54,8 @@ export default function Pagination({
           }
         })}
         <PaginationButton
+          handleClickButton={handleClickNext}
           isDisabled={currentPage === totalPages}
-          url={`${targetUrl}${currentPage + 1}`}
         >
           &#62;
         </PaginationButton>

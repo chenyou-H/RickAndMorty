@@ -14,10 +14,10 @@ html {
 
 // Define global variables
 :root {
-  --halloween-color: #eb6123;
+  --halloween-color: rgb(235, 97, 35);
   --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   --box-shadow-hover: 0 8px 16px 0 rgba(19, 1, 1, 0.923);
-  --button-background-hover: rgba(0, 0, 0, 0.4);
+  --button-background-hover: rgba(235, 97, 35, 0.4);
 }
 
 // Define reusable variables
@@ -29,6 +29,10 @@ $font-size-halloween: 2rem;
   font-family: $font-nosifer;
   font-size: $font-size-halloween;
   margin: 3rem 0;
+
+  @media only screen and (max-width: 350px) {
+    margin: 0;
+  }
 }
 
 .halloweenContainer {
@@ -112,44 +116,60 @@ $font-size-halloween: 2rem;
   box-shadow: var(--box-shadow);
   transition: 0.3s;
   width: 100%;
-  border: 2px solid red;
+  position: relative;
+
+  @media only screen and (max-width: 350px) {
+    .card {
+      max-width: 100%; /* Ensure the card doesn't exceed the screen width */
+    }
+  }
 
   &:hover {
     box-shadow: var(--box-shadow-hover);
-    // box-shadow: 0 8px 16px 0 red;
   }
 
   &__imageContainer {
     width: 100%;
+    height: auto;
+    position: relative;
   }
 
   &__image {
-    // height: 100%;
     width: 100%;
     height: auto;
     border: solid 0.5rem var(--halloween-color);
+    max-width: 100%;
+    display: block;
   }
 
   &__name {
     text-align: center;
     font-weight: 600;
     margin: 1rem;
+
+    @media only screen and (max-width: 350px) {
+      margin: 0;
+    }
   }
 }
 
 // Styles for pagination
 .pagination {
   padding: 32px 64px;
+  display: flex;
+  flex-wrap: wrap;
 
   &__dots {
+    // width: 3.75rem;
+    // height: 3.75rem;
     font-size: 2rem;
-    margin: 16px;
+    padding: 16px;
     color: var(--halloween-color);
   }
 
   &__btn {
-    width: 60px;
-    height: 60px;
+    width: 3.75rem;
+    height: 3.75rem;
     border: none;
     background-color: transparent;
     margin: 16px;
@@ -176,5 +196,16 @@ $font-size-halloween: 2rem;
       background-color: var(--halloween-color);
       box-shadow: none;
     }
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .card {
+    max-width: 100%; /* Ensure the card doesn't exceed the screen width */
   }
 }
