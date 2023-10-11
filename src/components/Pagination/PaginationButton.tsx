@@ -18,6 +18,7 @@ export default function PaginationButton({
   const styles = `${isSelected} pagination__btn`;
 
   return (
+    // <div>
     <button
       className={styles}
       disabled={isDisabled}
@@ -25,5 +26,6 @@ export default function PaginationButton({
     >
       {children}
     </button>
+    // </div>
   );
 }

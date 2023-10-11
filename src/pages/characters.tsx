@@ -41,11 +41,6 @@ export default function Characters({
   characters,
   currentPage,
 }: CharactersPageProps) {
-  const paginationRange = usePagination({
-    currentPage,
-    totalPages,
-  });
-
   const router = useRouter();
 
   const handleClickPage = (newPage: number) => {
@@ -70,7 +65,7 @@ export default function Characters({
           handleClickButton={handleClickPage}
           currentPage={currentPage}
           totalPages={totalPages}
-          paginationRange={paginationRange}
+          // paginationRange={paginationRange}
         />
       </main>
     </>
