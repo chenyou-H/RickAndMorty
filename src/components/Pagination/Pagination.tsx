@@ -3,19 +3,15 @@ import PaginationButton from "./PaginationButton";
 import Dots from "./Dots";
 import usePagination from "@/utils/hook/usePagination";
 
-interface NumberOrEllipsisArray extends Array<number | "..."> {}
-
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
-  // paginationRange: NumberOrEllipsisArray;
   handleClickButton: (page: number) => void;
 }
 
 export default function Pagination({
   currentPage,
   totalPages,
-  // paginationRange,
   handleClickButton,
 }: PaginationProps) {
   const paginationRange = usePagination({

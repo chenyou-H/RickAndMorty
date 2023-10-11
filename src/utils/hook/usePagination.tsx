@@ -4,15 +4,17 @@ var _ = require("lodash");
 interface usePaginationProps {
   totalPages: number;
   currentPage: number;
+  siblingCount?: number;
 }
 
 export default function usePagination({
   currentPage,
   totalPages,
+  siblingCount = 1,
 }: usePaginationProps) {
   const paginationRange = useMemo(() => {
     // Pages count is determined as 2 siblingCount + firstPage + lastPage + currentPage + 2*DOTS
-    const totalVisiblePageNumbers = 7;
+    const totalVisiblePageNumbers = 5 + siblingCount * 2;
 
     if (totalPages < totalVisiblePageNumbers) {
       return _.range(1, totalPages);
@@ -21,8 +23,8 @@ export default function usePagination({
     /*
     	Calculate left and right sibling index and make sure they are within range 1 and totalPageCount
     */
-    const leftSiblingIndex = Math.max(currentPage - 1, 1);
-    const rightSiblingIndex = Math.min(currentPage + 1, totalPages);
+    const leftSiblingIndex = Math.max(currentPage - siblingCount, 1);
+    const rightSiblingIndex = Math.min(currentPage + siblingCount, totalPages);
 
     /*
       We do not show dots just when there is just one page number to be inserted between the extremes of sibling and the page limits i.e 1 and totalPageCount. Hence we are using leftSiblingIndex > 2 and rightSiblingIndex < totalPageCount - 2
@@ -59,7 +61,7 @@ export default function usePagination({
       let middleRange = _.range(leftSiblingIndex, rightSiblingIndex + 1);
       return [firstPageIndex, "...", ...middleRange, "...", lastPageIndex];
     }
-  }, [currentPage, totalPages]);
+  }, [currentPage, totalPages, siblingCount]);
 
   return paginationRange;
 }
